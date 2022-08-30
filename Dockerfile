@@ -1,7 +1,7 @@
 FROM python:3.9-alpine
 
 WORKDIR /home/lcdui
-RUN apk add i2c-tools libgpiod-dev gcc libc-dev g++
+RUN apk add i2c-tools libgpiod-dev gcc libc-dev g++ zlib
 RUN pip install pipenv
 COPY Pipfile* ./
 RUN pipenv install --system
