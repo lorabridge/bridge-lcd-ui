@@ -1,0 +1,18 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+paho-mqtt = "*"
+redis = "*"
+setuptools = "*"
+adafruit-python-shell = "*"
+adafruit-blinka = "*"
+"rpi.gpio" = "*"
+pillow = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3"
