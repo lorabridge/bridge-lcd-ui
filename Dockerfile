@@ -8,4 +8,4 @@ RUN pipenv install --system
 COPY . .
 
 USER 1337:1337
-ENTRYPOINT [ "python3", "lcd-ui.py"]
+ENTRYPOINT [ "python3", "lcd_ui.py"]
