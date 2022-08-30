@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "9217a5da2fd4620d4f8e39bed658e3f345520fc8ab49fa410434d53bcf6a1f48"
+            "sha256": "035d4eb1f7a4e4f3453ad96ef866821e587bea3d1fa47247dcc880a4b012f1ae"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -44,6 +44,12 @@
             ],
             "version": "==1.8.1"
         },
+        "adafruit-gpio": {
+            "hashes": [
+                "sha256:d6465b92c866c51ca8f3bc1e8f2ec36f5ccdb46d0fd54101c1109756d4a2dcd0"
+            ],
+            "version": "==1.0.3"
+        },
         "adafruit-platformdetect": {
             "hashes": [
                 "sha256:6ec7a1be85fadb92ebfb9fe27989c8054314a640afde69430c209fd94c97b0c9"
@@ -64,6 +70,13 @@
             ],
             "index": "pypi",
             "version": "==1.3.3"
+        },
+        "adafruit-ssd1306": {
+            "hashes": [
+                "sha256:4768518204037db82eb6b90838938f8519ecd29fe3d6cc3efa0d1100ed527727"
+            ],
+            "index": "pypi",
+            "version": "==1.6.2"
         },
         "args": {
             "hashes": [
@@ -232,6 +245,12 @@
             ],
             "index": "pypi",
             "version": "==65.3.0"
+        },
+        "spidev": {
+            "hashes": [
+                "sha256:8a7f5c289f161ea2ac4697fa8a10918232c990678dd0053084b3c43b1363910d"
+            ],
+            "version": "==3.5"
         },
         "typing-extensions": {
             "hashes": [

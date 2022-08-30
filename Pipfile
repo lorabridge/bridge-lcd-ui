@@ -11,6 +11,7 @@ adafruit-python-shell = "*"
 adafruit-blinka = "*"
 "rpi.gpio" = "*"
 pillow = "*"
+adafruit-ssd1306 = "*"
 
 [dev-packages]
 
