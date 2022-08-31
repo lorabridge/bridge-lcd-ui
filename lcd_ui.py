@@ -1,5 +1,5 @@
 #
-# LoRaBridge: 
+# LoRaBridge:
 #
 # LCD Display UI controller script for Adafruit LoRaWAN Bonnett
 #
@@ -35,6 +35,14 @@ REDIS_DB = int(os.environ.get('FOR_REDIS_DB', 0))
 Z2M_STATUS = "undefined"
 Z2M_CONNECTED_DEVICES = "undefined"
 
+
+# The callback for when the client receives a CONNACK response from the server.
+def on_connect(client, userdata, flags, rc):
+
+    # Subscribing in on_connect() means that if we lose the connection and
+    # reconnect then subscriptions will be renewed.
+    client.subscribe(MQTT_BASE_TOPIC + '/#')
+
 client = mqtt.Client()
 client.on_connect = on_connect
 
@@ -47,12 +55,6 @@ client.loop_forever()
 
 # MQTT
 
-# The callback for when the client receives a CONNACK response from the server.
-def on_connect(client, userdata, flags, rc):
-
-    # Subscribing in on_connect() means that if we lose the connection and
-    # reconnect then subscriptions will be renewed.
-    client.subscribe(MQTT_BASE_TOPIC + '/#')
 
 
 # The callback for when a PUBLISH message is received from the server.
