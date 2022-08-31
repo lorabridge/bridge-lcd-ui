@@ -154,7 +154,7 @@ def get_eth_ip():
 
 
 def get_ips():
-    data = filter(open("/ofelia/ips").read().split("\n"))
+    data = filter(None, open("/ofelia/ips").read().split("\n"))
     return {x.split("dev")[1].strip().split(" ")[0]: x.split("src")[1].strip().split(" ")[0] for x in data}
 
 
