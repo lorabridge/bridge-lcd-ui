@@ -88,7 +88,7 @@ i2c = busio.I2C(board.SCL, board.SDA)
 reset_pin = DigitalInOut(board.D4)
 display = adafruit_ssd1306.SSD1306_I2C(128, 32, i2c, reset=reset_pin)
 
-image = Image.open('data_bridge_logo_black_small.png').resize((display.width, display.height), Image.ANTIALIAS).convert('1')
+image = Image.open('data_bridge_logo_black_small.png').resize((display.width, display.height), Image.LANCZOS).convert('1')
 
 # Clear the display.
 display.image(image)
