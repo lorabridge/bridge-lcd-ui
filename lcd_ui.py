@@ -153,6 +153,11 @@ def get_eth_ip():
     return ip
 
 
+def get_ips():
+    data = filter(open("/ofelia/ips").read().split("\n"))
+    return {x.split("dev")[1].strip().split(" ")[0]: x.split("src")[1].strip().split(" ")[0] for x in data}
+
+
 def get_cpu_percent():
     return str(psutil.cpu_percent())
 
@@ -184,9 +189,12 @@ def display_pi_status():
     display.fill(0)
 
     # IP Address fetchig to be implemented
-
+    ips = get_ips()
     #display.text('wlan0:'+get_wlan_ip(), 3,0,1)
     #display.text('eth0:'+get_eth_ip(), 3,8,1)
+    display.text('wlan0:' + ips.get('wlan0', 'unconfigured'), 3, 0, 1)
+    display.text('eth0:' + ips.get('eth0', 'unconfigured'), 3, 8, 1)
+
     display.text('CPU:' + get_cpu_percent() + '%', 3, 16, 1)
     display.text('Avail mem:' + get_avail_mem() + '%', 3, 24, 1)
     display.show()
