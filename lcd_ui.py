@@ -194,7 +194,7 @@ def display_subsystem_status():
 
 def display_joining_timeout():
     display.fill(0)
-    display.text('Joining enabled: ' + current_join_timeout + " sec", 3, 8, 1)
+    display.text('Joining enabled: ' + str(current_join_timeout) + " sec", 3, 8, 1)
     display.show()
 
 
