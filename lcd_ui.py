@@ -227,4 +227,7 @@ while True:
     if selected_page == 'joining':
         display_joining_timeout()
         time.sleep(1)
-        current_join_timeout -= 1
+        if current_join_timeout > 0:
+            current_join_timeout -= 1
+        else:
+            selected_page = 'subsystem'
