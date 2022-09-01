@@ -33,6 +33,9 @@ REDIS_PORT = int(os.environ.get('FOR_REDIS_PORT', 6379))
 REDIS_DB = int(os.environ.get('FOR_REDIS_DB', 0))
 Z2M_STATUS = "undefined"
 Z2M_CONNECTED_DEVICES = "undefined"
+Z2M_JOIN_TIMEOUT = int(os.environ.get('LCD_Z2M_TIMEOUT', 30))
+
+current_join_timeout = Z2M_JOIN_TIMEOUT
 
 
 # MQTT
@@ -116,7 +119,9 @@ def button2_callback(channel):
 
 def button3_callback(channel):
     global selected_page
-    selected_page = 'subsystem'
+    current_join_timeout = Z2M_JOIN_TIMEOUT
+    selected_page = 'joining'
+    permit_join()
 
 
 # Helper functions
@@ -127,30 +132,8 @@ def signal_handler(sig, frame):
     sys.exit(0)
 
 
-def get_wlan_ip():
-
-    ip = 'not assigned'
-    routes = json.loads(os.popen("ip -j -4 route").read())
-
-    for r in routes:
-        if r.get("dev") == "wlan0" and r.get("prefsrc"):
-            ip = r['prefsrc']
-            continue
-
-    return ip
-
-
-def get_eth_ip():
-
-    ip = 'not assigned'
-    routes = json.loads(os.popen("ip -j -4 route").read())
-
-    for r in routes:
-        if r.get("dev") == "eth0" and r.get("prefsrc"):
-            ip = r['prefsrc']
-            continue
-
-    return ip
+def permit_join():
+    client.publish(MQTT_BASE_TOPIC + "/request/permit_join", json.dumps({"value": True, "time": Z2M_JOIN_TIMEOUT}))
 
 
 def get_ips():
@@ -209,6 +192,12 @@ def display_subsystem_status():
     display.show()
 
 
+def display_joining_timeout():
+    display.fill(0)
+    display.text('Joining enabled: ' + current_join_timeout + " sec", 3, 8, 1)
+    display.show()
+
+
 def setup_button_callbacks():
     GPIO.setmode(GPIO.BCM)
     # Adafruit bonnet gpio numbers: Button1 - 5, Button2 - 6, Button3 - 12
@@ -234,3 +223,8 @@ while True:
     if selected_page == 'pi':
         display_pi_status()
         time.sleep(0.5)
+
+    if selected_page == 'joining':
+        display_joining_timeout()
+        time.sleep(1)
+        current_join_timeout -= 1
