@@ -119,6 +119,7 @@ def button2_callback(channel):
 
 def button3_callback(channel):
     global selected_page
+    global current_join_timeout 
     current_join_timeout = Z2M_JOIN_TIMEOUT
     selected_page = 'joining'
     permit_join()
