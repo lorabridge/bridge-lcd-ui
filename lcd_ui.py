@@ -33,7 +33,7 @@ REDIS_PORT = int(os.environ.get('FOR_REDIS_PORT', 6379))
 REDIS_DB = int(os.environ.get('FOR_REDIS_DB', 0))
 Z2M_STATUS = "undefined"
 Z2M_CONNECTED_DEVICES = "undefined"
-Z2M_JOIN_TIMEOUT = int(os.environ.get('LCD_Z2M_TIMEOUT', 30))
+Z2M_JOIN_TIMEOUT = int(os.environ.get('LCD_Z2M_TIMEOUT', 300))
 
 current_join_timeout = Z2M_JOIN_TIMEOUT
 
