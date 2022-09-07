@@ -55,7 +55,7 @@ def on_message(client, userdata, msg):
 
     if msg.topic != None and "devices" in msg.topic:
         # only end devices, no e.g. coordinator
-        payload = [dev for dev in json.loads(msg.payload) if dev['type'] == 'EndDevice']
+        payload = [dev for dev in json.loads(msg.payload) if dev['type'] != 'Coordinator']
         Z2M_CONNECTED_DEVICES = str(len(payload))
 
 
