@@ -36,7 +36,7 @@ Z2M_CONNECTED_DEVICES = "undefined"
 Z2M_JOIN_TIMEOUT = int(os.environ.get('LCD_Z2M_TIMEOUT', 300))
 
 current_join_timeout = Z2M_JOIN_TIMEOUT
-
+selected_page = 'pi'
 
 # MQTT
 # The callback for when the client receives a CONNACK response from the server.
@@ -48,8 +48,8 @@ def on_connect(client, userdata, flags, rc):
 
 
 # The callback for when a PUBLISH message is received from the server.
-def on_message(client, userdata, msg):
-    global Z2M_STATUS, Z2M_CONNECTED_DEVICES
+def on_message(client, userdata, msg):    
+    global Z2M_STATUS, Z2M_CONNECTED_DEVICES, selected_page
     if msg.topic != None and "state" in msg.topic:
         Z2M_STATUS = msg.payload.decode('utf-8')
 
@@ -61,7 +61,7 @@ def on_message(client, userdata, msg):
     if msg.topic != None and "event" in msg.topic:
         event_payload = json.loads(msg.payload)
         if event_payload['type'] == "device_joined":
-            display_device_joined()
+            selected_page = 'device_joined'
 
 client = mqtt.Client()
 client.on_connect = on_connect
@@ -102,7 +102,7 @@ display.image(image)
 display.show()
 width = display.width
 height = display.height
-selected_page = 'pi'
+
 
 # Show splash screen logo for few seconds
 
@@ -188,7 +188,7 @@ def display_pi_status():
     display.show()
 
 
-def display_subsystem_status():
+def display_subsystem_status():    
 
     display.fill(0)
     display.text('zigbee2mqtt:' + get_zigbee2mqtt_status(), 3, 0, 1)
@@ -228,6 +228,8 @@ setup_button_callbacks()
 
 while True:
 
+   
+
     if selected_page == 'subsystem':
         display_subsystem_status()
         time.sleep(0.5)
@@ -243,3 +245,8 @@ while True:
             current_join_timeout -= 1
         else:
             selected_page = 'subsystem'
+
+    if selected_page == 'device_joined':
+        display_device_joined()
+        time.sleep(2.0)
+        selected_page = 'pi'
