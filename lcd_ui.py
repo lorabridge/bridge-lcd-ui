@@ -58,6 +58,10 @@ def on_message(client, userdata, msg):
         payload = [dev for dev in json.loads(msg.payload) if dev['type'] != 'Coordinator']
         Z2M_CONNECTED_DEVICES = str(len(payload))
 
+    if msg.topic != None and "event" in msg.topic:
+        event_payload = json.loads(msg.payload)
+        if event_payload['type'] == "device_joined":
+            display_device_joined()
 
 client = mqtt.Client()
 client.on_connect = on_connect
@@ -197,6 +201,13 @@ def display_joining_timeout():
     display.fill(0)
     display.text('Joining enabled: ' + str(current_join_timeout) + " s", 3, 8, 1)
     display.show()
+
+
+def display_device_joined():
+    display.fill(0)
+    display.text('Zigbee device joined!', 3,8,1)
+    display.show()
+    time.sleep(2.0)
 
 
 def setup_button_callbacks():
