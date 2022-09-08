@@ -171,6 +171,15 @@ def get_lorawan_status():
 
     return status
 
+def get_tx_queue_status():
+    status = 'undefined'
+
+    status_new = str(r_client.llen("lorabridge_data"))
+
+    if status_new:
+        status = status_new
+
+    return status
 
 def display_pi_status():
 
@@ -194,6 +203,7 @@ def display_subsystem_status():
     display.text('zigbee2mqtt:' + get_zigbee2mqtt_status(), 3, 0, 1)
     display.text('zigbee devices:' + Z2M_CONNECTED_DEVICES, 3, 8, 1)
     display.text('LoRaWAN TX:' + get_lorawan_status(), 3, 16, 1)
+    display.text('TX queue length:'+get_tx_queue_status(),3,24,1)
     display.show()
 
 
