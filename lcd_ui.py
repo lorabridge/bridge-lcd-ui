@@ -48,7 +48,7 @@ def on_connect(client, userdata, flags, rc):
 
 
 # The callback for when a PUBLISH message is received from the server.
-def on_message(client, userdata, msg):    
+def on_message(client, userdata, msg):
     global Z2M_STATUS, Z2M_CONNECTED_DEVICES, selected_page
     if msg.topic != None and "state" in msg.topic:
         Z2M_STATUS = msg.payload.decode('utf-8')
@@ -123,7 +123,7 @@ def button2_callback(channel):
 
 def button3_callback(channel):
     global selected_page
-    global current_join_timeout 
+    global current_join_timeout
     current_join_timeout = Z2M_JOIN_TIMEOUT
     selected_page = 'joining'
     permit_join()
@@ -174,8 +174,8 @@ def get_lorawan_status():
 def get_tx_queue_status():
     status = 'undefined'
 
-    status_new = str(r_client.llen("lorabridge_data"))
-
+    # status_new = str(r_client.llen("lorabridge_data"))
+    status_new = str(len(r_client.keys("lorabridge:device:*:message:*")))
     if status_new:
         status = status_new
 
@@ -197,7 +197,7 @@ def display_pi_status():
     display.show()
 
 
-def display_subsystem_status():    
+def display_subsystem_status():
 
     display.fill(0)
     display.text('zigbee2mqtt:' + get_zigbee2mqtt_status(), 3, 0, 1)
@@ -238,7 +238,7 @@ setup_button_callbacks()
 
 while True:
 
-   
+
 
     if selected_page == 'subsystem':
         display_subsystem_status()
