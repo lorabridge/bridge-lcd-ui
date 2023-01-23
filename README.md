@@ -21,6 +21,15 @@ Supported hardware
 
 Adafruit LoRa Radio Bonnet with OLED 868/915 MHz
 
+## Environment Variables
+- `FOR_MQTT_HOST`: IP or hostname of MQTT host
+- `FOR_MQTT_PORT`: Port used by MQTT
+- `FOR_MQTT_BASE_TOPIC`: MQTT topic used by zigbee2mqtt (default: `zigbee2mqtt`)
+- `FOR_REDIS_HOST`: IP or hostname of Redis host
+- `FOR_REDIS_PORT`: Port used by Redis
+- `FOR_REDIS_DB`: Number of the database used inside Redis
+- `LCD_Z2M_TIMEOUT`: Timeout in seconds for permitting zigbee join requests
+
 ## License
 
 All the LoRaBridge software components and the documentation are licensed under GNU General Public License 3.0.
