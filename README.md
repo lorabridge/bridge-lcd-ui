@@ -1,5 +1,6 @@
 LCD User Interface of Bridge Unit
 ============================================
+This repository is part of the LoRaBridge project.
 
 This repository contains source code, which implements a simplified LCD/push button based user interface
 for the Bridge PI. Via the UI, an user can access some relevant information such as the status of the LoRaWAN
@@ -19,3 +20,11 @@ Supported hardware
 ------------------
 
 Adafruit LoRa Radio Bonnet with OLED 868/915 MHz
+
+## License
+
+All the LoRaBridge software components and the documentation are licensed under GNU General Public License 3.0.
+
+## Acknowledgements
+
+The financial support from Internetstiftung/Netidee is gratefully acknowledged. The mission of Netidee is to support development of open-source tools for more accessible and versatile use of the Internet in Austria.
