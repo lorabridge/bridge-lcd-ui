@@ -138,7 +138,7 @@ def signal_handler(sig, frame):
 
 
 def permit_join():
-    client.publish(MQTT_BASE_TOPIC + "/request/permit_join", json.dumps({"value": True, "time": Z2M_JOIN_TIMEOUT}))
+    client.publish(MQTT_BASE_TOPIC + "/bridge/request/permit_join", json.dumps({"value": True, "time": Z2M_JOIN_TIMEOUT}))
 
 
 def get_ips():
