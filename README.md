@@ -1,6 +1,6 @@
 LCD User Interface of Bridge Unit
 ============================================
-This repository is part of the LoRaBridge project.
+This repository is part of the [LoRaBridge](https://github.com/lorabridge/lorabridge) project.
 
 This repository contains source code, which implements a simplified LCD/push button based user interface
 for the Bridge PI. Via the UI, an user can access some relevant information such as the status of the LoRaWAN
