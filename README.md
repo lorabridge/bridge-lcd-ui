@@ -1,3 +1,6 @@
+> [!WARNING]
+> This project is **deprecated** and was superseded by [LoRaBridge2](https://github.com/lorabridge2).
+
 LCD User Interface of Bridge Unit
 ============================================
 This repository is part of the [LoRaBridge](https://github.com/lorabridge/lorabridge) project.
